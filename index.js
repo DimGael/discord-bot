@@ -1,5 +1,5 @@
+require('dotenv').config();
 const Discord = require("discord.js");
-const config = require("./config.json");
 const fs = require("fs");
 const game = require("./game/game.js");
 
@@ -62,9 +62,8 @@ client.on("message", function(message){
             else
                 message.reply("Le jeu **"+gameToDelete+"** n'a pas pu être supprimé, je crois qu'il n'existe pas (**"+prefix+" list** pour avoir la liste des jeux)");
             break;
-
     }
 });
 
 
-client.login(config.BOT_TOKEN);
+client.login(process.env.BOT_TOKEN);
