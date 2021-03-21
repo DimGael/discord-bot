@@ -1,6 +1,7 @@
 require('dotenv').config();
 const Discord = require("discord.js");
 const fs = require("fs");
+const axios = require("axios");
 const game = require("./game/game.js");
 
 const client = new Discord.Client();
@@ -41,7 +42,7 @@ client.on("message", function(message){
 
             let gameIndex = Math.floor(Math.random() * list.length);
 
-            message.reply("Ajourd'hui les gueux vous allez jouer à **" + list[gameIndex] + "** et vous allez arrêter de m'emmerder");
+            message.reply("Ajourd'hui les petits tdc vous allez jouer à **" + list[gameIndex] + "** et vous allez arrêter de m'emmerder");
             break;
 
         case 'add':
@@ -61,6 +62,29 @@ client.on("message", function(message){
                 message.reply("Le jeu **"+gameToDelete+"** a bien été supprimé !")
             else
                 message.reply("Le jeu **"+gameToDelete+"** n'a pas pu être supprimé, je crois qu'il n'existe pas (**"+prefix+" list** pour avoir la liste des jeux)");
+            break;
+
+        case 'watch':
+            const url = args[0];
+
+            if (args.length === 0){
+                message.reply("**g watch <lienYoutube>** pour regarder la vidéo à plusieurs !");
+                return;
+            }
+
+            axios.post("https://w2g.tv/rooms/create.json", {
+                "w2g_api_key": process.env.W2G_APIKEY,
+                "share": url,
+                "bg_color": "#000000",
+                "bg_opacity": "50"
+            })
+            .then(function (response){
+                message.reply("W2G: Et voilà votre salles messieurs :\nhttps://w2g.tv/rooms/" + response.data.streamkey)
+            })
+            .catch(function (error){
+                console.log(error);
+                message.reply("W2G : Le serveur a retourné une erreur :'(.")
+            })
             break;
     }
 });
