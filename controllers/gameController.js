@@ -17,7 +17,7 @@ module.exports = {
 
         let gameIndex = Math.floor(Math.random() * list.length);
 
-        message.reply("Ajourd'hui les petits tdc vous allez jouer à **" + list[gameIndex] + "** et vous allez arrêter de m'emmerder");
+        message.reply("Go jouer à **" + list[gameIndex] + "** !");
     },
 
     add: function(command, args, message){
@@ -38,17 +38,4 @@ module.exports = {
         else
             message.reply("Le jeu **"+gameToDelete+"** n'a pas pu être supprimé, je crois qu'il n'existe pas (**"+prefix+" list** pour avoir la liste des jeux)");
     }
-}
-
-
-module.exports = {
-    /**
-     * 
-     * @param {string} command 
-     * @param {Array<string>} args 
-     * @param {Discord.Message} message 
-     */
-    handle(command, args, message){
-        functions[command](command, args, message);
-    },
 }

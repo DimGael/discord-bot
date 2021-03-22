@@ -19,5 +19,51 @@ const helpMessageEmbed = new Discord.MessageEmbed()
 module.exports = {
     help: function(command, args, message){
         message.channel.send(helpMessageEmbed);
-    }
+    },
+
+    coucheravec: function(command, args, message){
+        if (args.length >= 1)
+            message.reply("Mmmmmh alors alors alors mes petits zouzous, demain à 17h30 retrouvez vous chez : "+args[0]+"");
+    },
+
+    react: function(command, args, message){
+        message.react('😀');
+    },
+
+    swag: function(command, args, message){
+        let ran = Math.floor(Math.random() * 2);
+        if (ran === 1)
+            message.reply("Oui bg tu es swag sisi");
+        else
+            message.reply("Non bg tu pues, vas donc te chercher un style");
+    },
+
+    manger: function(command, args, message){
+        const bouffe = ['Salade', 'Kebab', 'KFC', 'McDo', 'BK'];
+
+        let ran = Math.floor(Math.random() * bouffe.length);
+
+        message.reply("Fais toi ça : **"+bouffe[ran]+"**, tkt");
+    },
+
+    taille: function(command, args, message){
+        const taille = Math.floor(Math.random() * 10)+10;
+        if (taille < 12)
+            message.reply(taille+"cm ???? HAHAHA C TOUT PETIT SALE TROUDUC")
+        else
+            message.reply(taille+"cm ???? Wow c'est super FAT sa mère")
+    },
+
+    civ: function(command, args, message){
+        const victoire = ["Culturel", "Militaire", "Religieuse", "loose"]
+
+        let ind = Math.floor(Math.random()*victoire.length);
+
+        if(victoire[ind] === "loose"){
+            message.reply("ça sert à rien c'est loose");
+        }
+        else{
+            message.reply("Alors là tu vas viser la victoire " + victoire[ind].toLowerCase())
+        }
+    },
 }

@@ -24,7 +24,6 @@ module.exports = {
 
         });
 
-        if (!commandFound)
-            message.reply("Cette commande existe pas gros trou du cul");
+        // Do something when command is not handled ...
     }
 }
