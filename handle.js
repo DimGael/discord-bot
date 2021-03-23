@@ -9,11 +9,13 @@ const controllers = [
 module.exports = {
     /**
      * Handles the user's command
-     * @param {string} command The command asked by the user
-     * @param {Array<string>} args The arguments provided by the user
      * @param {Discord.Message} message The asker's discord message object
      */
-    handle : function(command, args, message){
+    handle : function(message){
+        const commandBody = message.content.slice("!".length);
+        const args = commandBody.split(' ');
+        const command = args.shift().toLowerCase();
+
         let commandFound = false;
         controllers.forEach(function(controller){
             
