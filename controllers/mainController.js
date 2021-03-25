@@ -66,4 +66,14 @@ module.exports = {
             message.reply("Alors là tu vas viser la victoire " + victoire[ind].toLowerCase())
         }
     },
+
+    lfl: function(command, args, message){
+        message.reply("Tu veux savoir qui va gagner la LFL ce soir ? attend je vais te dire ...")
+        setTimeout(() => {
+            message.channel.send("```1```")
+        }, 1000);
+        setTimeout(() => {message.channel.send("```2```")}, 2000);
+        setTimeout(() => {message.channel.send("```3```")}, 3000);
+        setTimeout(() => {message.channel.send("```VIVE LA KCORP ALLER ADAM```")}, 4000);
+    }
 }
