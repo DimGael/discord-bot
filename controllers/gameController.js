@@ -2,6 +2,22 @@
 const game = require("../game/game");
 const config = require("../config.json");
 const prefix = config.prefix;
+const Discord = require('discord.js');
+
+const helpMessageEmbed = new Discord.MessageEmbed()
+    .setColor('#0099ff')
+    .setTitle("Potclean Help - Game commands")
+    .setDescription("Aide pour la commande game.")
+    .setThumbnail('https://www.nautiljon.com/images/perso/00/24/potclean_10642.jpg?0')
+    .addFields(
+        { name: config.prefix+'game', value: 'Je choisis à quoi vous allez jouer aujourd\'hui' },
+        { name: config.prefix+'game list', value: 'Liste les jeux qui sont stockés' },
+        { name: config.prefix+'game add <NomDuJeu>', value: 'J\'ajoute <NomDuJeu> dans la liste.' },
+        { name: config.prefix+'game delete <ID>', value: 'Supprime le jeu avec id = <ID>' },
+        { name: config.prefix+'game delete <NomDuJeu>', value: 'Supprime le jeu <NomDuJeu>' },
+    )
+    .setFooter(prefix+'help pour avoir une aide sur les autres commandes.')
+;
 
 module.exports = {
     game:{
@@ -57,7 +73,7 @@ module.exports = {
 
         help: (args, message) => {
             if (args.split(' ').length === 0){
-                // Displays help message for this game command
+                message.channel.send(helpMessageEmbed);
             }
         }
     },

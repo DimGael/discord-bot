@@ -9,11 +9,11 @@ const helpMessageEmbed = new Discord.MessageEmbed()
         "Voici ce que je sais faire :```")
     .setThumbnail('https://www.nautiljon.com/images/perso/00/24/potclean_10642.jpg?0')
 	.addFields(
-		{ name: config.prefix+'play', value: 'je choisis à quoi vous allez jouer aujourd\'hui' },
+		{ name: config.prefix+'game', value: 'Je choisis à quoi vous allez jouer aujourd\'hui' },
 		{ name: config.prefix+'watch', value: 'je vous met dans une salle à l\'aise pour regarder une vidéo youtube ensemble !' },
 		{ name: config.prefix+'help', value: 'j\'affiche ce petit message tout pipou' },
+		{ name: config.prefix+'<command> help', value: 'j\'affiche le message d\'aide pour la commande **<command>**' },
 	)
-    .setFooter('Auteur du bot : Sakamoto du discord Hunters mon pote rien que ça')
 ;
 
 module.exports = {
