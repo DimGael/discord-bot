@@ -21,6 +21,11 @@ const gameModule = {
         return games;
     },
 
+    /**
+     * Adds a new game to the list
+     * @param {string} gameName Name of the game to add
+     * @returns The ID of the game just added (starting at 0)
+     */
     add: function(gameName){
         games = require("./games.json");
         games = games[myCurrentId];
@@ -29,7 +34,7 @@ const gameModule = {
 
         fs.writeFileSync("./game/games.json", JSON.stringify(games));
 
-        return true;
+        return games.length-1;
     },
 
     delete: function(gameName){

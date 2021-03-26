@@ -17,20 +17,20 @@ const helpMessageEmbed = new Discord.MessageEmbed()
 ;
 
 module.exports = {
-    help: function(command, args, message){
+    help: function(args, message){
         message.channel.send(helpMessageEmbed);
     },
 
-    coucheravec: function(command, args, message){
+    coucheravec: function(args, message){
         if (args.length >= 1)
             message.reply("Mmmmmh alors alors alors mes petits zouzous, demain à 17h30 retrouvez vous chez : "+args[0]+"");
     },
 
-    react: function(command, args, message){
+    react: function(args, message){
         message.react('😀');
     },
 
-    swag: function(command, args, message){
+    swag: function(args, message){
         let ran = Math.floor(Math.random() * 2);
         if (ran === 1)
             message.reply("Oui bg tu es swag sisi");
@@ -38,7 +38,7 @@ module.exports = {
             message.reply("Non bg tu pues, vas donc te chercher un style");
     },
 
-    manger: function(command, args, message){
+    manger: function(args, message){
         const bouffe = ['Salade', 'Kebab', 'KFC', 'McDo', 'BK'];
 
         let ran = Math.floor(Math.random() * bouffe.length);
@@ -46,7 +46,7 @@ module.exports = {
         message.reply("Fais toi ça : **"+bouffe[ran]+"**, tkt");
     },
 
-    taille: function(command, args, message){
+    taille: function(args, message){
         const taille = Math.floor(Math.random() * 10)+10;
         if (taille < 12)
             message.reply(taille+"cm ???? HAHAHA C TOUT PETIT SALE TROUDUC")
@@ -54,7 +54,7 @@ module.exports = {
             message.reply(taille+"cm ???? Wow c'est super FAT sa mère")
     },
 
-    civ: function(command, args, message){
+    civ: function(args, message){
         const victoire = ["Culturel", "Militaire", "Religieuse", "loose"]
 
         let ind = Math.floor(Math.random()*victoire.length);
@@ -67,7 +67,7 @@ module.exports = {
         }
     },
 
-    lfl: function(command, args, message){
+    lfl: function(args, message){
         message.reply("Tu veux savoir qui va gagner la LFL ce soir ? attend je vais te dire ...")
         setTimeout(() => {
             message.channel.send("```1```")

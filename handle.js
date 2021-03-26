@@ -6,24 +6,32 @@ const controllers = [
     require("./controllers/w2gController"),
 ];
 
+const _caller = function(currentObject, commandBody, message){
+    let args = commandBody.split(" ");
+    let commandToCall = args.shift().toLowerCase();
+
+    if (typeof(currentObject[commandToCall]) === "object")
+        _caller(currentObject[commandToCall], args.join(" "), message)
+    
+    else if(typeof(currentObject[commandToCall]) === "function")
+        currentObject[commandToCall](args.join(" "), message);
+    
+    else if (typeof(currentObject._standard) === "function"){
+        args.push(commandToCall);
+        currentObject._standard(args.join(" "), message);
+    }
+}
+
 module.exports = {
     /**
      * Handles the user's command
      * @param {Discord.Message} message The asker's discord message object
      */
-    handle : function(message){
-        const commandBody = message.content.slice("!".length);
-        const args = commandBody.split(' ');
-        const command = args.shift().toLowerCase();
+    handle : function(messageObject){
+        const messageSent = messageObject.content.slice("!".length);
 
-        let commandFound = false;
         controllers.forEach(function(controller){
-            
-            if (controller[command] !== undefined){
-                commandFound = true;
-                controller[command](command, args, message);
-            }
-
+            _caller(controller, messageSent, messageObject);
         });
 
         // Do something when command is not handled ...
