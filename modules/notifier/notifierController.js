@@ -1,27 +1,26 @@
 require('dotenv').config();
 const { Message } = require('discord.js');
 
-const notify = require('./notify');
+const Notifier = require('./notifier');
 
 /**
  * Controller for notifier module.
  * Uses notifier module to add new users in notifiees.
  */
 module.exports = {
-
-    _keyphrase : "password",
-
     notifier: {
+        _keyphrase: "password",
+
         stop: function(args, message){
             if(args !== "")
                 return;
 
-            if(!notify.idExists(message.author.id)){
+            if(!Notifier.idExists(message.author.id)){
                 message.reply("You are not in the list");
                 return;
             }
 
-            if(!notify.delete(message.author.id)){
+            if(!Notifier.delete(message.author.id)){
                 message.reply("Error when removing from the list");
                 return;
             }
@@ -42,19 +41,19 @@ module.exports = {
             // args should be the bot token
             if(args !== this._keyphrase) return;
 
-            if(notify.idExists(message.author.id)){
+            if(Notifier.idExists(message.author.id)){
                 message.reply("You are already in the notifiees !");
                 return;
             }
 
             // Adding the sender to the persons to notify
-            notify.add(message.author.id);
+            Notifier.add(message.author.id);
 
             message.reply("You have been correctly add to my notifiees :)");
         },
 
         _standard: function(args, message){
-            if(notify.idExists(message.author.id))
+            if(Notifier.idExists(message.author.id))
                 message.reply("You are in my list of user that are to notify")
             else
                 message.reply("You are not in my list of user, you will not be notified")
