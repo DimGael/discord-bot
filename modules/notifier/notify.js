@@ -47,21 +47,46 @@ module.exports = {
      * Adds a new user to be notified
      * @param {string} id user to add as a notifiee
      */
-    addToNotify: function(id){
+    add: function(id){
         let notifiees = getNotifiees();
         let newNotifiee = {
             "id": id
         };
 
-        let userExists = false;
-
-        notifiees.forEach((notifiee) => {if (notifiee.id === newNotifiee.id) userExists = true;})
-        
-        if (userExists) return;
+        if (this.idExists(id)) return true;
 
         notifiees.push(newNotifiee);
 
-        console.log(notifiees);
         fs.writeFileSync("./modules/notifier/notifiees.json", JSON.stringify(notifiees));
-    }
+        return true;
+    },
+
+    delete: function(id){
+        if(!this.idExists(id))
+            return false;
+
+        let notifiees = getNotifiees();
+        
+        notifiees.forEach((user, index) => {
+            if(user.id === id){
+                notifiees.splice(index, 1);
+                return;
+            }
+        });
+
+        fs.writeFileSync("./modules/notifier/notifiees.json", JSON.stringify(notifiees));
+
+        return true;
+    },
+
+    idExists: function(id){
+        let userExists = false;
+
+        getNotifiees().forEach((user) => {
+            if(user.id === id)
+                userExists = true;
+        })
+
+        return userExists;
+    },
 }
