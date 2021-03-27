@@ -14,8 +14,7 @@ client.on('ready', () => {
 
 client.on("message", function(message){
     if (message.author.bot) return;
-    if (!message.content.startsWith(prefix)) return;
-    handler.handle(message);
+    handler.handle(client, message);
 });
 
 

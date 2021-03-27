@@ -1,6 +1,6 @@
 
-const game = require("../game/game");
-const config = require("../config.json");
+const game = require("./game");
+const config = require("../../config.json");
 const prefix = config.prefix;
 const Discord = require('discord.js');
 

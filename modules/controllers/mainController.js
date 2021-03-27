@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const config = require("../config.json")
+const config = require("../../config.json")
 
 const helpMessageEmbed = new Discord.MessageEmbed()
     .setColor('#0099ff')

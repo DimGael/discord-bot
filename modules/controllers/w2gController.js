@@ -1,5 +1,5 @@
 const axios = require("axios");
-const prefix = require('../config.json').prefix;
+const prefix = require('../../config.json').prefix;
 
 module.exports = {
     watch: {
