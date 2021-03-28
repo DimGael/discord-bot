@@ -5,6 +5,7 @@ const controllers = [
     require("./modules/game/gameController"),
     require("./modules/controllers/mainController"),
     require("./modules/controllers/w2gController"),
+    require("./modules/notifier/notifierController"),
 ];
 
 const _caller = function(currentObject, commandBody, message){
